@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Favorite List {% endblock title %}
+
+{% block content %}
+
+
+<table class="table container">
+    <thead>
+      <tr>
+        <th scope="col">Number Of Favorites</th>
+        <th scope="col">Title</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+        {% for blog in AllBlog%}
+      <tr>
+        <th scope="row">{{blog.id}}</th>
+        <td>{{blog.title}}</td>
+        <td><a class="text-decoration-none" href="{% url 'remove_fav' blog.id%}"> X </a> </td>
+      </tr>
+     {%endfor%}
+    </tbody>
+  </table>
+
+{% endblock content %}

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Login {% endblock title %}
+
+{% block content %}
+
+ {% comment %} <section class="contact-us">
+    <div class="container">
+      <div class="row">
+      
+        <div class="col-lg-12">
+          <div class="down-contact">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="sidebar-item contact-form">
+                  <div class="sidebar-heading">
+                    <h2>Login to your account</h2>
+                  </div>
+                  <div class="content">
+                    <form id="contact" action="" method="POST" novalidate>
+                      {% csrf_token %}
+                      <div class="row">
+                        {% if messages %}
+                        <div class="col-md-12 col-sm-12">
+                          
+                        </div>
+                        {% endif %}
+                        <div class="col-md-12 col-sm-12">
+                          <fieldset>
+                            <input name="username" type="text" id="username_id" placeholder="Your name/email" >
+                            <p class="error py-1 text-danger">{{form.username.errors}}</p>
+                          </fieldset>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                          <fieldset>
+                            <input name="password" type="password" id="password_id" placeholder="Your password" >
+                            <p class="error py-1 text-danger">{{form.password.errors}}</p>
+                          </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                          <fieldset>
+                            <button type="submit" id="form-submit" class="main-button mr-2">Login</button>
+                            
+                            <a class="btn btn-primary" href="{% url 'registration' %}" role="button">Registration</a>
+                              
+                          </fieldset>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+    </div>
+  </section>  {% endcomment %}
+
+  <section class="vh-80 bg-image mt-5"
+  >
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+
+              <form action="#" method="POST">
+                {% csrf_token %}
+                {% for hidden_field in form.hidden_fields %} {{ hidden_field.errors }} {{ hidden_field }} {% endfor %} 
+                {% for field in form.visible_fields %}
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="{{ field.id_for_label }}"> {{ field.label }} </label>
+                    <input name="{{ field.name }}" id="{{ field.id_for_label }}" type="{{ field.widget_type }}" class="form-control form-control-lg" />
+                </div>
+
+                {% if field.errors %} {% for error in field.errors %}
+                <p class="text-danger  italic pb-2">{{ error }}</p>
+                {% endfor %} 
+                {% endif %} {% endfor %}
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit"
+                    class="btn btn-lg gradient-custom-4 " style = " background-color: #f48840;">Login</button>
+                </div>
+
+                <p class="text-center text-muted mt-5 mb-0">Not an account? <a href="{% url 'registration' %}"
+                    class="fw-bold text-body"><u>Sign up here</u></a></p>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

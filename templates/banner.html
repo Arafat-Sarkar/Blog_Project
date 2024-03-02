@@ -1,0 +1,32 @@
+{% load static %} 
+<div class="main-banner header-text">
+      <div class="container-fluid">
+        <div class="owl-banner owl-carousel">
+          {%for blog in blogs|slice:"6"%}
+          <div class="item">
+            {%if blog.image%}
+            <img class = " card-img-top img-fluid" style = "width: 100%; height:320px;" src="{{blog.image.url}}" alt="">
+            {%endif%}
+            <div class="item-content">
+              <div class="main-content">
+                <div class="meta-category">
+                  {% for cat in blog.category.all%}
+                  <span>{{cat.name}}n</span>
+                  {%endfor%}
+                </div>
+                <a href="{%url 'detalis' blog.id%}"><h4>{{blog.title}}</h4></a>
+                <ul class="post-info">
+                  <li><a href="#">{{blog.author.username}}</a></li>
+                  <li><a href="#">{{blog.created_date}}</a></li>
+                  {%for rat in blog.user_rating.all%}
+                  <li><a href="#">{{rat.rating}}</a></li>
+                  {%endfor%}
+                </ul>
+              </div>
+            </div>
+          </div>
+          {%endfor%}
+
+        </div>
+      </div>
+    </div>
